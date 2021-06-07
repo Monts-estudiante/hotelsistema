@@ -39,11 +39,11 @@ public class Usuario extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(247, 230, 212));
         jPanel1.setForeground(new java.awt.Color(247, 230, 212));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 2, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(226, 146, 65));
         jLabel1.setText("Usuario.");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(226, 146, 65));
         jLabel2.setText("Contraseña.");
 
