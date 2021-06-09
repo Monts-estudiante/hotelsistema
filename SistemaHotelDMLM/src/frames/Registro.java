@@ -235,7 +235,7 @@ public class Registro extends javax.swing.JFrame {
         habitacion = (String)this.jComboBoxHabitacion.getSelectedItem();
         ciudad = this.jTextFieldCiudad.getText();
         personas = (int)this.jSpinnerPersonas.getValue();
-
+        String lim = Integer.toString(personas);
         /*OBTIENE LA FECHA INGRESADA EN EN JDATECHOOSER Y LA CONVIERTE PARA SUMERLE LOS DIAS INGRESADOS*/
         java.util.Date fechaa = this.jDateChooserFechaEntrada.getDate();
         java.sql.Date fec = new java.sql.Date(fechaa.getTime());
@@ -262,6 +262,8 @@ public class Registro extends javax.swing.JFrame {
                 System.out.println(this.piso1);
                 Registro.subeMysql(nombre, habitacion, cuar, ciudad, personas, fec, dias, res, conn);
                 JOptionPane.showMessageDialog(this, "Registro exitoso");
+                //imprime el voucher 
+                JOptionPane.showConfirmDialog(this,  personasVoucher(nombre, ciudad, fec, res, lim, habitacion));
             } else if (personas >= 2 && personas <= 3) {
                 int ran = (int)(Math.random() * (3 - 0 + 1 ) + 0);
                 cuar =  habpi1sen[ran];
@@ -270,6 +272,8 @@ public class Registro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Se cobrará un total de 500 por persona extra");
                 Registro.subeMysql(nombre, habitacion, cuar, ciudad, personas, fec, dias, res, conn);
                 JOptionPane.showMessageDialog(this, "Registro exitoso");
+                //imprime el voucher 
+                JOptionPane.showConfirmDialog(this,  personasVoucher(nombre, ciudad, fec, res, lim, habitacion));
             }else if (personas >= 4) {
                 JOptionPane.showMessageDialog(this, "El total de personas excede el limite permitido. Se recomienda otra habitacion");
             }
@@ -283,6 +287,8 @@ public class Registro extends javax.swing.JFrame {
                 System.out.println(this.piso1);
                 Registro.subeMysql(nombre, habitacion, cuar, ciudad, personas, fec, dias, res, conn);
                 JOptionPane.showMessageDialog(this, "Registro exitoso");
+                //imprime el voucher 
+                JOptionPane.showConfirmDialog(this,  personasVoucher(nombre, ciudad, fec, res, lim, habitacion));
             } else if (personas >= 3 && personas <= 4) {
                 int ran = (int)(Math.random() * (4 - 0 + 1 ) + 0);
                 cuar =  habpi1dob[ran];
@@ -291,6 +297,8 @@ public class Registro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Se cobrará un total de 500 por persona extra");
                 Registro.subeMysql(nombre, habitacion, cuar, ciudad, personas, fec, dias, res, conn);
                 JOptionPane.showMessageDialog(this, "Registro exitoso");
+                //imprime el voucher 
+                JOptionPane.showConfirmDialog(this,  personasVoucher(nombre, ciudad, fec, res, lim, habitacion));
             } else if (personas >= 5) {
                 JOptionPane.showMessageDialog(this, "El total de personas excede el limite permitido. Se recomienda otra habitacion");
             }
@@ -305,7 +313,8 @@ public class Registro extends javax.swing.JFrame {
                 System.out.println(this.piso1);
                 Registro.subeMysql(nombre, habitacion, cuar, ciudad, personas, fec, dias, res, conn);
                 JOptionPane.showMessageDialog(this, "Registro exitoso");
-                String lim = Integer.toString(personas);
+                
+                //imprime el voucher 
                 JOptionPane.showConfirmDialog(this,  personasVoucher(nombre, ciudad, fec, res, lim, habitacion));
             } else if (personas >= 4 && personas <= 5) {
                 int ran = (int)(Math.random() * (5 - 0 + 1 ) + 0);
@@ -315,6 +324,8 @@ public class Registro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Se cobrará un total de 500 por persona extra");
                 Registro.subeMysql(nombre, habitacion, cuar, ciudad, personas, fec, dias, res, conn);
                 JOptionPane.showMessageDialog(this, "Registro exitoso");
+                //imprime el voucher 
+                JOptionPane.showConfirmDialog(this,  personasVoucher(nombre, ciudad, fec, res, lim, habitacion));
             }else if (personas >= 6) {
                 JOptionPane.showMessageDialog(this, "El total de personas excede el limite permitido. Se recomienda otra habitacion aparte");
             }
