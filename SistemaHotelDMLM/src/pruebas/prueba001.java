@@ -13,7 +13,7 @@ import frames.Portada;
 public class prueba001 {
     public static void main(String[] args) {
         //llamo a la portada
-        Portada llamar= new Portada();
+        Portada llamar = new Portada();
         llamar.setVisible(true);
     }
 }
