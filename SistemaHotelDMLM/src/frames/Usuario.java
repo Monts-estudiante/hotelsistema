@@ -5,32 +5,17 @@
  */
 package frames;
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import org.apache.commons.codec.digest.DigestUtils;
-
-
-
 /**
  *
  * @author Tania Montserrat
  */
 public class Usuario extends javax.swing.JFrame {
-     MySqlConn conn;
+
     /**
      * Creates new form Usuario
      */
-     public Usuario(MySqlConn conn) {
-//        MySqlConn objConn = new MySqlConn();
-        this.conn = conn;
-        initComponents();
-        this.setLocationRelativeTo(this);
-    }
     public Usuario() {
         initComponents();
-        this.setLocationRelativeTo(this);
     }
 
     /**
@@ -125,42 +110,14 @@ public class Usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String cuenta, contraseña, query, parte1, parte2;
-        cuenta = this.usuario.getText().trim();
-        char[] passwd = this.jPasswordFieldContrasena.getPassword();
-        
-        query = "select * from usuarios where cuenta = " + "'" + cuenta + "'";
-        this.conn.Consult(query);
-        try {
-            String contraseñaMysql = this.conn.rs.getString(2);
-//            char[] passwd = this.jPasswordFieldLogin.getPassword();
-            contraseña = new String(passwd);
-            String contraseñaencriptada = DigestUtils.md5Hex(contraseña);
-            if (contraseñaMysql.equals(contraseñaencriptada)) {
-                System.out.println("Bienvenid@ " + this.conn.rs.getString(1) + " al sistema");
-                JOptionPane.showMessageDialog(this, "Bienvenid@ " + this.conn.rs.getString(1) + " al sistema");
-                //Usuario llamar= new Usuario();
-                principal llamar=new principal();
-                llamar.setVisible(true);
-                // Y nos ocultamos nosotros
-                this.setVisible(false);  
-            }else{
-                this.jPasswordFieldContrasena.setText("");
-                System.out.println("Error en la contraseña");
-                JOptionPane.showMessageDialog(this, "Error en la contraseña");
-                
-            }
-        } catch (SQLException ex) {
-            this.usuario.setText("");
-            this.jPasswordFieldContrasena.setText("");
-            System.out.println("No existe la cuenta");
-            JOptionPane.showMessageDialog(this, "No existe la cuenta");
-            
-        }
         
         
         
-      
+    //Usuario llamar= new Usuario();
+        principal llamar=new principal();
+        llamar.setVisible(true);
+        // Y nos ocultamos nosotros
+        this.setVisible(false);    
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -168,7 +125,6 @@ public class Usuario extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        final MySqlConn objConn = new MySqlConn();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -195,7 +151,7 @@ public class Usuario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Usuario(objConn).setVisible(true);
+                new Usuario().setVisible(true);
             }
         });
     }
