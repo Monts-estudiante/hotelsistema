@@ -5,6 +5,7 @@
  */
 package pruebas;
 import frames.Portada;
+import frames.Usuario;
 //import javax.swing.JFrame;
 /**
  *
@@ -15,5 +16,7 @@ public class prueba001 {
         //llamo a la portada
         Portada llamar= new Portada();
         llamar.setVisible(true);
+        /*Usuario llamar= new Usuario();
+        llamar.setVisible(true);*/
     }
 }
