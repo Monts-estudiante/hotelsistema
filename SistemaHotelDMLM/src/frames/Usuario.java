@@ -5,6 +5,7 @@
  */
 package frames;
 
+<<<<<<< HEAD
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,18 +17,39 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
+=======
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import org.apache.commons.codec.digest.DigestUtils;
+
+
+
+>>>>>>> 0893d5ac58c88985795b6eed81f0ef7829bc0fd2
 /**
  *
  * @author Tania Montserrat
  */
 public class Usuario extends javax.swing.JFrame {
+<<<<<<< HEAD
   
     MySqlConn conn=new  MySqlConn();
+=======
+     MySqlConn conn;
+>>>>>>> 0893d5ac58c88985795b6eed81f0ef7829bc0fd2
     /**
      * Creates new form Usuario
      */
+     public Usuario(MySqlConn conn) {
+//        MySqlConn objConn = new MySqlConn();
+        this.conn = conn;
+        initComponents();
+        this.setLocationRelativeTo(this);
+    }
     public Usuario() {
         initComponents();
+        this.setLocationRelativeTo(this);
     }
     
     public void nuevaPantalla(){
@@ -239,6 +261,7 @@ public class Usuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
 
         //Usuario llamar= new Usuario();
@@ -246,6 +269,45 @@ public class Usuario extends javax.swing.JFrame {
         llamar.setVisible(true);
         // Y nos ocultamos nosotros
         this.setVisible(false);
+=======
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String cuenta, contraseña, query, parte1, parte2;
+        cuenta = this.usuario.getText().trim();
+        char[] passwd = this.jPasswordFieldContrasena.getPassword();
+        
+        query = "select * from usuarios where cuenta = " + "'" + cuenta + "'";
+        this.conn.Consult(query);
+        try {
+            String contraseñaMysql = this.conn.rs.getString(2);
+//            char[] passwd = this.jPasswordFieldLogin.getPassword();
+            contraseña = new String(passwd);
+            String contraseñaencriptada = DigestUtils.md5Hex(contraseña);
+            if (contraseñaMysql.equals(contraseñaencriptada)) {
+                System.out.println("Bienvenid@ " + this.conn.rs.getString(1) + " al sistema");
+                JOptionPane.showMessageDialog(this, "Bienvenid@ " + this.conn.rs.getString(1) + " al sistema");
+                //Usuario llamar= new Usuario();
+                principal llamar=new principal();
+                llamar.setVisible(true);
+                // Y nos ocultamos nosotros
+                this.setVisible(false);  
+            }else{
+                this.jPasswordFieldContrasena.setText("");
+                System.out.println("Error en la contraseña");
+                JOptionPane.showMessageDialog(this, "Error en la contraseña");
+                
+            }
+        } catch (SQLException ex) {
+            this.usuario.setText("");
+            this.jPasswordFieldContrasena.setText("");
+            System.out.println("No existe la cuenta");
+            JOptionPane.showMessageDialog(this, "No existe la cuenta");
+            
+        }
+        
+        
+        
+      
+>>>>>>> 0893d5ac58c88985795b6eed81f0ef7829bc0fd2
         
         String cuenta,contraseña,query;
        
@@ -285,6 +347,7 @@ public class Usuario extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        final MySqlConn objConn = new MySqlConn();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -311,6 +374,7 @@ public class Usuario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+<<<<<<< HEAD
                 new Usuario().setVisible(true);
                 try {
                     play();
@@ -318,6 +382,10 @@ public class Usuario extends javax.swing.JFrame {
                     Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
                         }
+=======
+                new Usuario(objConn).setVisible(true);
+            }
+>>>>>>> 0893d5ac58c88985795b6eed81f0ef7829bc0fd2
         });
     }
 
