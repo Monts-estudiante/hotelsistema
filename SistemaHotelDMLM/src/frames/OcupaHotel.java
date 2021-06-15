@@ -52,8 +52,8 @@ MySqlConn conn=new  MySqlConn();
         super.paint(g);
         aux= 10/*tipo()*/;
         System.out.println(""+aux);
-        int int_rojo = aux;
-        int int_verde = 25-aux;
+        int int_rojo = 10;
+        int int_verde = 25-10;
         
         int total_votos = int_rojo+int_verde;
         int grados_rojo = int_rojo * 360 / total_votos;
