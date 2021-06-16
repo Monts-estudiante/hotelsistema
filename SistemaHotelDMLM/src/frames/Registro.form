@@ -86,41 +86,39 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="45" max="32767" attributes="0"/>
-                          <Component id="jButtonRegsitrar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jDateChooserFechaEntrada" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jSpinnerTotDias" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jTextFieldCiudad" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jSpinnerTotDias" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextFieldCiudad" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jSpinnerPersonas" max="32767" attributes="0"/>
-                              <Component id="jTextFieldNombre" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="jComboBoxHabitacion" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                                  <Component id="jButtonSeleccion" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="69" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="jDateChooserFechaEntrada" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jComboBoxHabitacion" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <Component id="jButtonSeleccion" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="69" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="jSpinnerPersonas" max="32767" attributes="0"/>
+                      <Component id="jTextFieldNombre" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
+                  <Component id="jButtonRegsitrar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                  <Component id="jButtonCambios" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -150,16 +148,23 @@
                   </Group>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+
                       <Component id="jDateChooserFechaEntrada" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jSpinnerTotDias" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="jButtonRegsitrar" min="-2" max="-2" attributes="0"/>
+
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButtonRegsitrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+
                   <EmptySpace pref="65" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -203,9 +208,6 @@
               </StringArray>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxHabitacionActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCiudad">
         </Component>
@@ -221,6 +223,11 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRegsitrarActionPerformed"/>
           </Events>
         </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserFechaEntrada">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="yyyy/MM/d"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dia de entrda "/>
@@ -234,7 +241,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSeleccionActionPerformed"/>
           </Events>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserFechaEntrada">
+        <Component class="javax.swing.JButton" name="jButtonCambios">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Realizar cambios"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCambiosActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
