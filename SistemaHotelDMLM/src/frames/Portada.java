@@ -147,11 +147,14 @@ public class Portada extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addGap(276, 276, 276)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+
                 .addContainerGap(110, Short.MAX_VALUE))
+
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -192,6 +195,7 @@ public class Portada extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(536, 536, 536))
+
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
