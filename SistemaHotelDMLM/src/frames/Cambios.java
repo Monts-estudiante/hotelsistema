@@ -257,7 +257,7 @@ public class Cambios extends javax.swing.JFrame {
         String nombreO, cambio;
         nombreO = this.jTextFieldBusca.getText();
         cambio = this.jTextFieldDatoACambiar.getText();
-        int personas = Integer.parseInt(cambio);
+        
         
         if (this.jComboBoxCambio.getSelectedItem().equals("Nombre")) {
             String query = "UPDATE huespedes SET nombre = '" + cambio + "' WHERE nombre = '" + nombreO + "'";
@@ -268,7 +268,7 @@ public class Cambios extends javax.swing.JFrame {
             this.conn.Update(query);
             JOptionPane.showMessageDialog(this, "Ciudad origen actualizada");
         }else if (this.jComboBoxCambio.getSelectedItem().equals("Numero de Personas")) {
-            
+            int personas = Integer.parseInt(cambio);
             //String dato = String.valueOf(jTableInfo.getValueAt(jTableInfo.getSelectedRow(),1));
             String dato = String.valueOf(jTableInfo.getValueAt(0, 1));
             
