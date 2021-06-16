@@ -101,7 +101,7 @@ MySqlConn conn=new  MySqlConn();
 
         jPanel1.setBackground(new java.awt.Color(247, 230, 212));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -141,7 +141,11 @@ MySqlConn conn=new  MySqlConn();
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
            
-        //repaint();
+         //llamamos a usuario
+        principal llamar= new principal();
+        llamar.setVisible(true);
+        // Y nos ocultamos nosotros
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -5,9 +5,13 @@
  */
 package frames;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,11 +25,21 @@ public class principal extends javax.swing.JFrame {
      */
     public principal() {        
         initComponents();
+        
         setTitle("principal");
         this.setLocationRelativeTo(this);
         //this.setExtendedState(this.MAXIMIZED_BOTH);
     }
-
+         public void DrawCircle(){
+        setTitle("dibijando un circulo");
+        setSize(250,250);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+                
+                        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,7 +126,7 @@ public class principal extends javax.swing.JFrame {
                         .addGap(404, 404, 404)
                         .addComponent(jLabel6))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(272, 272, 272)
+                        .addGap(291, 291, 291)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(251, Short.MAX_VALUE))
         );
@@ -140,6 +154,11 @@ public class principal extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(233, 183, 95));
 
         jMenu1.setText("Registro");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Salida");
@@ -222,7 +241,12 @@ public class principal extends javax.swing.JFrame {
         jMenuItem12.setText("Lista de huspedes  ");
         jMenu4.add(jMenuItem12);
 
-        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.setText("Cambios");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem2);
 
         jMenuBar1.add(jMenu4);
@@ -285,7 +309,7 @@ public class principal extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
          JOptionPane.showMessageDialog(this,"Entraste a Galeria");
-          new Galeria().setVisible(true);
+          
            this.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -301,6 +325,22 @@ public class principal extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
       JOptionPane.showMessageDialog(this,"Precios: sencilla $800,doble $1200, triple $1900");
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        //llamamos a usuario
+        Registro llamar= new Registro();
+        llamar.setVisible(true);
+        // Y nos ocultamos nosotros
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+       //llamamos a usuario
+        Cambios llamar= new Cambios();
+        llamar.setVisible(true);
+        // Y nos ocultamos nosotros
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
