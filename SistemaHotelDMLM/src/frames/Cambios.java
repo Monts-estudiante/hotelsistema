@@ -54,12 +54,16 @@ public class Cambios extends javax.swing.JFrame {
         jButtonActualizar = new javax.swing.JButton();
         jTextFieldDatoACambiar = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CAMBIOS");
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 14)); // NOI18N
         jLabel2.setText("Ingresa el nombre del huesped");
 
+        jTextFieldBusca.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+
+        jButtonBuscar.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,15 +71,16 @@ public class Cambios extends javax.swing.JFrame {
             }
         });
 
+        jTableInfo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 12)); // NOI18N
         jTableInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane2.setViewportView(jTableInfo);
@@ -110,10 +115,12 @@ public class Cambios extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel2.setBackground(new java.awt.Color(234, 196, 196));
 
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 14)); // NOI18N
         jLabel1.setText("Dato a cambiar");
 
+        jComboBoxCambio.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
         jComboBoxCambio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione una opcion", "Nombre", "Ciudad", "Numero de Personas" }));
         jComboBoxCambio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,8 +128,10 @@ public class Cambios extends javax.swing.JFrame {
             }
         });
 
+        jLabelDatoCambia.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 14)); // NOI18N
         jLabelDatoCambia.setText(".");
 
+        jButtonActualizar.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
         jButtonActualizar.setText("Actualizar Informacion");
         jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,23 +139,25 @@ public class Cambios extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldDatoACambiar.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabelDatoCambia, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabelDatoCambia, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextFieldDatoACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonActualizar))
                     .addComponent(jComboBoxCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(537, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +257,7 @@ public class Cambios extends javax.swing.JFrame {
         String nombreO, cambio;
         nombreO = this.jTextFieldBusca.getText();
         cambio = this.jTextFieldDatoACambiar.getText();
-        int personas = Integer.parseInt(cambio);
+        
         
         if (this.jComboBoxCambio.getSelectedItem().equals("Nombre")) {
             String query = "UPDATE huespedes SET nombre = '" + cambio + "' WHERE nombre = '" + nombreO + "'";
@@ -257,7 +268,7 @@ public class Cambios extends javax.swing.JFrame {
             this.conn.Update(query);
             JOptionPane.showMessageDialog(this, "Ciudad origen actualizada");
         }else if (this.jComboBoxCambio.getSelectedItem().equals("Numero de Personas")) {
-            
+            int personas = Integer.parseInt(cambio);
             //String dato = String.valueOf(jTableInfo.getValueAt(jTableInfo.getSelectedRow(),1));
             String dato = String.valueOf(jTableInfo.getValueAt(0, 1));
             
