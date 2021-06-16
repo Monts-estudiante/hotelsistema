@@ -26,7 +26,7 @@ public class MySqlConn {
                             +"user=root&password=";
 
             // conexion con la bd
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/hotel2021", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel2021", "root", "");
         } catch (SQLException e) {
             System.out.println("SQL Exception: "+ e.toString());
         } catch (ClassNotFoundException cE) {
