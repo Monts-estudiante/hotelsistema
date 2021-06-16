@@ -144,10 +144,13 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+
         jDateChooserFechaEntrada.setDateFormatString("yyyy/MM/d");
         jDateChooserFechaEntrada.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
+
         jLabel6.setFont(new java.awt.Font("Yu Gothic", 2, 12)); // NOI18N
+
         jLabel6.setText("Dia de entrda ");
 
         jButtonSeleccion.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 12)); // NOI18N
@@ -157,14 +160,13 @@ public class Registro extends javax.swing.JFrame {
                 jButtonSeleccionActionPerformed(evt);
             }
         });
-
-        jButtonCambios.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 12)); // NOI18N
         jButtonCambios.setText("Realizar cambios");
         jButtonCambios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCambiosActionPerformed(evt);
             }
         });
+
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Light", 3, 24)); // NOI18N
         jLabel7.setText("CHECK IN");
@@ -175,6 +177,7 @@ public class Registro extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+
                 .addGap(147, 147, 147)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -233,17 +236,23 @@ public class Registro extends javax.swing.JFrame {
                     .addComponent(jSpinnerPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
                     .addComponent(jDateChooserFechaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(34, 34, 34)
+
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSpinnerTotDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(45, 45, 45)
+
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRegsitrar)
                     .addComponent(jButtonCambios))
-                .addContainerGap(47, Short.MAX_VALUE))
+
+
+                .addContainerGap(65, Short.MAX_VALUE))
+
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -323,7 +332,9 @@ public class Registro extends javax.swing.JFrame {
         }if (habitacion.equals("Doble")) {
 
             /*VALIDACION PARA LA CANTIDAD DE PERSONAS*/
+
             if (personas <= 2) {
+
                 int ran = (int)(Math.random() * (4 - 0 + 1 ) + 0);
                 cuar =  habpi1dob[ran];
                 this.piso1.add(new Habitacion(habitacion, habpi1dob[ran], true));
@@ -348,6 +359,7 @@ public class Registro extends javax.swing.JFrame {
         }if (habitacion.equals("Triple")) {
 
             /*VALIDACION PARA LA CANTIDAD DE PERSONAS*/
+
             if (personas <= 3) {
                 
                 int ran = (int)(Math.random() * (5 - 0 + 1 ) + 0);
@@ -380,6 +392,10 @@ public class Registro extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonRegsitrarActionPerformed
 
+
+    private void jComboBoxHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHabitacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxHabitacionActionPerformed
     private void jButtonCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCambiosActionPerformed
         // TODO add your handling code here:
         Cambios llamar=new Cambios(objConn);
@@ -387,6 +403,7 @@ public class Registro extends javax.swing.JFrame {
         this.setVisible(false);  
 
     }//GEN-LAST:event_jButtonCambiosActionPerformed
+
 
     /**
      * @param args the command line arguments
