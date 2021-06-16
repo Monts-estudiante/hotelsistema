@@ -126,7 +126,9 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+
         jDateChooserFechaEntrada.setDateFormatString("yyyy/MM/d");
+
 
         jLabel6.setText("Dia de entrda ");
 
@@ -137,6 +139,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+
         jButtonCambios.setText("Realizar cambios");
         jButtonCambios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,11 +147,13 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+
                 .addGap(147, 147, 147)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -200,16 +205,20 @@ public class Registro extends javax.swing.JFrame {
                     .addComponent(jSpinnerPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
                     .addComponent(jDateChooserFechaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(34, 34, 34)
+
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSpinnerTotDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(45, 45, 45)
+
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRegsitrar)
                     .addComponent(jButtonCambios))
+
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
@@ -290,7 +299,9 @@ public class Registro extends javax.swing.JFrame {
         }if (habitacion.equals("Doble")) {
 
             /*VALIDACION PARA LA CANTIDAD DE PERSONAS*/
+
             if (personas <= 2) {
+
                 int ran = (int)(Math.random() * (4 - 0 + 1 ) + 0);
                 cuar =  habpi1dob[ran];
                 this.piso1.add(new Habitacion(habitacion, habpi1dob[ran], true));
@@ -315,6 +326,7 @@ public class Registro extends javax.swing.JFrame {
         }if (habitacion.equals("Triple")) {
 
             /*VALIDACION PARA LA CANTIDAD DE PERSONAS*/
+
             if (personas <= 3) {
                 
                 int ran = (int)(Math.random() * (5 - 0 + 1 ) + 0);
@@ -347,6 +359,10 @@ public class Registro extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonRegsitrarActionPerformed
 
+
+    private void jComboBoxHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHabitacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxHabitacionActionPerformed
     private void jButtonCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCambiosActionPerformed
         // TODO add your handling code here:
         Cambios llamar=new Cambios(objConn);
@@ -354,6 +370,7 @@ public class Registro extends javax.swing.JFrame {
         this.setVisible(false);  
 
     }//GEN-LAST:event_jButtonCambiosActionPerformed
+
 
     /**
      * @param args the command line arguments
