@@ -71,6 +71,7 @@ public class Registro extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButtonSeleccion = new javax.swing.JButton();
         jButtonCambios = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -107,18 +108,35 @@ public class Registro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic", 2, 12)); // NOI18N
         jLabel1.setText("Nombre");
 
+        jLabel2.setFont(new java.awt.Font("Yu Gothic", 2, 12)); // NOI18N
         jLabel2.setText("Tipo de habitacion");
 
+        jLabel3.setFont(new java.awt.Font("Yu Gothic", 2, 12)); // NOI18N
         jLabel3.setText("Ciudad de origen");
 
+        jLabel4.setFont(new java.awt.Font("Yu Gothic", 2, 12)); // NOI18N
         jLabel4.setText("Numero de personas");
 
+        jLabel5.setFont(new java.awt.Font("Yu Gothic", 2, 12)); // NOI18N
         jLabel5.setText("Total de dias");
 
+        jTextFieldNombre.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+
+        jComboBoxHabitacion.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
         jComboBoxHabitacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sencilla", "Doble", "Triple" }));
 
+        jTextFieldCiudad.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+
+        jSpinnerPersonas.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+
+        jSpinnerTotDias.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+
+        jButtonRegsitrar.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 12)); // NOI18N
         jButtonRegsitrar.setText("Registrar");
         jButtonRegsitrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,18 +146,20 @@ public class Registro extends javax.swing.JFrame {
 
 
         jDateChooserFechaEntrada.setDateFormatString("yyyy/MM/d");
+        jDateChooserFechaEntrada.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
+
+        jLabel6.setFont(new java.awt.Font("Yu Gothic", 2, 12)); // NOI18N
 
         jLabel6.setText("Dia de entrda ");
 
+        jButtonSeleccion.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 12)); // NOI18N
         jButtonSeleccion.setText("Seleccionar");
         jButtonSeleccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSeleccionActionPerformed(evt);
             }
         });
-
-
         jButtonCambios.setText("Realizar cambios");
         jButtonCambios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +167,10 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 3, 24)); // NOI18N
+        jLabel7.setText("CHECK IN");
+        jLabel7.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.red));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,21 +196,28 @@ public class Registro extends javax.swing.JFrame {
                         .addComponent(jComboBoxHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(jButtonSeleccion)
-                        .addGap(0, 69, Short.MAX_VALUE))
+                        .addGap(0, 21, Short.MAX_VALUE))
                     .addComponent(jSpinnerPersonas)
                     .addComponent(jTextFieldNombre))
                 .addGap(106, 106, 106))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(203, 203, 203)
-                .addComponent(jButtonRegsitrar)
-                .addGap(122, 122, 122)
-                .addComponent(jButtonCambios)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(203, 203, 203)
+                        .addComponent(jButtonRegsitrar)
+                        .addGap(122, 122, 122)
+                        .addComponent(jButtonCambios))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -219,7 +250,9 @@ public class Registro extends javax.swing.JFrame {
                     .addComponent(jButtonRegsitrar)
                     .addComponent(jButtonCambios))
 
+
                 .addContainerGap(65, Short.MAX_VALUE))
+
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -424,6 +457,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner jSpinnerPersonas;
     private javax.swing.JSpinner jSpinnerTotDias;
