@@ -1,37 +1,41 @@
 package frames;
 
 import MySql.MySqlConn;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeMap;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
-import pruebas.huespedes;
+import org.jfree.data.general.DefaultPieDataset;
 
 public class Consultas extends javax.swing.JFrame {
-    
+
     static final String Sencilla = "890";
     static final String Doble = "1200";
     static final String Triple = "1500";
 
     MySqlConn conn = new MySqlConn();
     JFreeChart graficaBarras;
-    DefaultCategoryDataset datos = new DefaultCategoryDataset();
-    
+    int S, D, T, Ocupado;
+
     public Consultas() {
-        this.conn=conn;
+        this.conn = conn;
         initComponents();
         this.jComboBox1.setVisible(false);
         this.jTable1.setVisible(false);
@@ -44,20 +48,22 @@ public class Consultas extends javax.swing.JFrame {
         this.jLabel3.setText("");
         this.jLabel4.setText("");
     }
-    public Consultas(MySqlConn conn){
-        this.conn=conn;
+
+    public Consultas(MySqlConn conn) {
+        this.conn = conn;
         initComponents();
         this.setLocationRelativeTo(this);
     }
 
-    private void eliminar(){
+    private void eliminar() {
         //Borrar los datos que actualmente están el jtable
-        DefaultTableModel tb=(DefaultTableModel)this.jTable1.getModel();
-        int a=this.jTable1.getRowCount()-1;
-        for(int i=a; i>=0; i--){
-            tb.removeRow(tb.getRowCount()-1);
+        DefaultTableModel tb = (DefaultTableModel) this.jTable1.getModel();
+        int a = this.jTable1.getRowCount() - 1;
+        for (int i = a; i >= 0; i--) {
+            tb.removeRow(tb.getRowCount() - 1);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,17 +77,18 @@ public class Consultas extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabelConsultas = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox();
         jRadioButtonPiso1 = new javax.swing.JRadioButton();
         jRadioButtonPiso2 = new javax.swing.JRadioButton();
+        jLabelConsultas = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -93,8 +100,8 @@ public class Consultas extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
 
@@ -105,24 +112,14 @@ public class Consultas extends javax.swing.JFrame {
         jMenuBar2.add(jMenu5);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 153, 255));
 
-        jLabelConsultas.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabelConsultas.setText("Consultas");
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
+        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre", "Habitación", "Piso"
@@ -138,6 +135,24 @@ public class Consultas extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
+        jLabel4.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel3.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel2.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel1.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jTextField1.setBackground(new java.awt.Color(255, 204, 204));
+        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -145,7 +160,9 @@ public class Consultas extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "200", "201", "202", "203", "204", "205", "206", "207", "208", "209", "210", "211", "212", "213", "214" }));
+        jComboBox1.setBackground(new java.awt.Color(255, 204, 204));
+        jComboBox1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "100", "105", "110", "115", "120", "125", "130", "135", "140", "145", "150", "155", "160", "165", "170", "210", "215", "220", "225", "230", "235", "240", "245", "250", "255", "260", "265", "270", "275", "280" }));
         jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jComboBox1MouseClicked(evt);
@@ -157,7 +174,9 @@ public class Consultas extends javax.swing.JFrame {
             }
         });
 
+        jRadioButtonPiso1.setBackground(new java.awt.Color(255, 204, 204));
         buttonGroup1.add(jRadioButtonPiso1);
+        jRadioButtonPiso1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jRadioButtonPiso1.setText("Piso 1");
         jRadioButtonPiso1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -165,13 +184,87 @@ public class Consultas extends javax.swing.JFrame {
             }
         });
 
+        jRadioButtonPiso2.setBackground(new java.awt.Color(255, 204, 204));
         buttonGroup1.add(jRadioButtonPiso2);
+        jRadioButtonPiso2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jRadioButtonPiso2.setText("Piso 2");
         jRadioButtonPiso2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jRadioButtonPiso2MouseClicked(evt);
             }
         });
+
+        jLabelConsultas.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabelConsultas.setText("Consultas");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(345, 345, 345))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(46, 46, 46)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jRadioButtonPiso1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jRadioButtonPiso2))
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38))))
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4});
+
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabelConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRadioButtonPiso1)
+                        .addComponent(jRadioButtonPiso2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4});
+
+        jMenuBar1.setBackground(new java.awt.Color(255, 204, 204));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jMenu1.setText("Consultas");
 
@@ -247,21 +340,21 @@ public class Consultas extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem9);
 
-        jMenuItem11.setText("Lista de huespedes por orden alfabético");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem11);
-
-        jMenuItem10.setText("Consulta Extra");
+        jMenuItem10.setText("Lista de huespedes por orden alfabético");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem10ActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem10);
+
+        jMenuItem11.setText("Mostrar estadísticas de los servicios del hotel");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem11);
 
         jMenuBar1.add(jMenu1);
 
@@ -288,70 +381,42 @@ public class Consultas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(jLabelConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jRadioButtonPiso1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRadioButtonPiso2))
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(225, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButtonPiso1)
-                        .addComponent(jRadioButtonPiso2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-
+        this.jComboBox1.setVisible(false);
+        this.jTable1.setVisible(false);
+        this.jTextField1.setVisible(false);
+        this.jRadioButtonPiso1.setVisible(false);
+        this.jRadioButtonPiso2.setVisible(false);
+        this.eliminar();//Borra los datos que actualmente están el jtable
+        this.jLabel1.setText("");
+        this.jLabel2.setText("");
+        this.jLabel3.setText("");
+        this.jLabel4.setText("");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
+        this.jComboBox1.setVisible(false);
+        this.jTable1.setVisible(false);
+        this.jTextField1.setVisible(false);
+        this.jRadioButtonPiso1.setVisible(false);
+        this.jRadioButtonPiso2.setVisible(false);
+        this.eliminar();//Borra los datos que actualmente están el jtable
+        this.jLabel1.setText("");
+        this.jLabel2.setText("");
+        this.jLabel3.setText("");
+        this.jLabel4.setText("");
         this.jLabel1.setText("");
         this.jLabel2.setText("");
         String cadena = "";
@@ -380,26 +445,136 @@ public class Consultas extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
+        this.jComboBox1.setVisible(false);
+        this.jTable1.setVisible(false);
+        this.jTextField1.setVisible(false);
+        this.jRadioButtonPiso1.setVisible(false);
+        this.jRadioButtonPiso2.setVisible(false);
+        this.eliminar();//Borra los datos que actualmente están el jtable
+        this.jLabel1.setText("");
+        this.jLabel2.setText("");
+        this.jLabel3.setText("");
+        this.jLabel4.setText("");
+        String query = "select * from habitaciones";
+        this.conn.Consult(query);
+        int n = 0;
+        try {
+            this.conn.rs.last();//Se posiciona en el último registo de la tabla
+            n = this.conn.rs.getRow();//Registra el número actual del registro
+            this.conn.rs.first();//Se posiciona en el primer registro de la tabla
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error...");
+        }
+        if (n != 0) {
+            String tipoHab;
+            int estado;
+            S = 0;
+            D = 0;
+            T = 0;
+            for (int i = 0; i < n; i++) {
+                try {
+                    tipoHab = this.conn.rs.getString(1);
+                    estado = this.conn.rs.getInt(4);
+                    if (estado == 1) {
+                        if (tipoHab.equals("sencilla")) {
+                            S++;
+                        } else if (tipoHab.equals("doble")) {
+                            D++;
+                        } else if (tipoHab.equals("triple")) {
+                            T++;
+                        }
+                    }
+                    this.conn.rs.next();//Avanza al siguiente registro
+                } catch (Exception e) {
+                    System.out.println("Error#2...");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay datos...");
+        }
+        DefaultCategoryDataset datos3 = new DefaultCategoryDataset();
+        datos3.addValue(S, "No. de Habitaciones Sencillas", "Sencilla");
+        datos3.addValue(D, "No. de Habitaciones Dobles", "Doble");
+        datos3.addValue(T, "No. de Habitaciones Triples", "Triple");
+        graficaBarras = ChartFactory.createBarChart("Habitaciones Ocupadas ", "Tipo de Habitación",
+                "Habitaciones Ocupadas", datos3, PlotOrientation.VERTICAL, true, true, false);
+        ChartPanel Panel = new ChartPanel(graficaBarras);
+        JFrame Ventana = new JFrame("Grafica Habitaciones Ocupadas");
+        Ventana.getContentPane().add(Panel);
+        Ventana.pack();
+        Ventana.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        datos.addValue(10, "No. de Habitaciones Sencillas", "Sencilla");
-        datos.addValue(10, "No. de Habitaciones Dobles", "Doble");
-        datos.addValue(10, "No. de Habitaciones Triples", "Triple");
-        graficaBarras = ChartFactory.createBarChart("Total de Habitaciones del Hotel ","Tipo de Habitación", 
-                "Habitaciones", datos,PlotOrientation.VERTICAL, true, true, false);
+        DefaultCategoryDataset datos4 = new DefaultCategoryDataset();
+        datos4.addValue(10, "No. de Habitaciones Sencillas", "Sencilla");
+        datos4.addValue(10, "No. de Habitaciones Dobles", "Doble");
+        datos4.addValue(10, "No. de Habitaciones Triples", "Triple");
+        graficaBarras = ChartFactory.createBarChart("Total de Habitaciones del Hotel ", "Tipo de Habitación",
+                "Habitaciones", datos4, PlotOrientation.VERTICAL, true, true, false);
         ChartPanel Panel = new ChartPanel(graficaBarras);
-        JFrame Ventana = new JFrame("Grafica Graficas");
+        JFrame Ventana = new JFrame("Grafica Total de Habitaciones del Hotel");
         Ventana.getContentPane().add(Panel);
         Ventana.pack();
         Ventana.setVisible(true);
-        //Ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        
+        this.jComboBox1.setVisible(false);
+        this.jTable1.setVisible(false);
+        this.jTextField1.setVisible(false);
+        this.jRadioButtonPiso1.setVisible(false);
+        this.jRadioButtonPiso2.setVisible(false);
+        this.eliminar();//Borra los datos que actualmente están el jtable
+        this.jLabel1.setText("");
+        this.jLabel2.setText("");
+        this.jLabel3.setText("");
+        this.jLabel4.setText("");
+        String query = "select * from habitaciones";
+        this.conn.Consult(query);
+        int n = 0;
+        try {
+            this.conn.rs.last();//Se posiciona en el último registo de la tabla
+            n = this.conn.rs.getRow();//Registra el número actual del registro
+            this.conn.rs.first();//Se posiciona en el primer registro de la tabla
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error...");
+        }
+        if (n != 0) {
+            String tipoHab;
+            int estado;
+            Ocupado = 0;
+            S = 0;
+            D = 0;
+            T = 0;
+            for (int i = 0; i < n; i++) {
+                try {
+                    estado = this.conn.rs.getInt(4);
+                    if (estado == 1) {
+                        Ocupado++;
+                    }
+                    this.conn.rs.next();//Avanza al siguiente registro
+                } catch (Exception e) {
+                    System.out.println("Error#2...");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay datos...");
+        }
+        int num1 = 0, num2 = 0;
+        num1 = (Ocupado * 100) / 30;
+        num2 = ((30 - Ocupado) * 100) / 30;
+        DefaultPieDataset pieDataset = new DefaultPieDataset();
+        pieDataset.setValue("Habitaciones Ocupadas", num1);
+        pieDataset.setValue("Habitaciones Desocupadas", num2);
+
+        JFreeChart chart = ChartFactory.createPieChart("Ocupación del Hotel", pieDataset, true, true, true);
+        ChartFrame frame = new ChartFrame("Grafica Ocupación del Hotel", chart);
+
+        frame.pack();
+        frame.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -410,8 +585,8 @@ public class Consultas extends javax.swing.JFrame {
         this.jLabel3.setText("");
         this.jLabel4.setText("");
         this.jLabel1.setText("Costos de Habitaciones");
-        this.jLabel2.setText("Habitación Sencilla: " + Sencilla );
-        this.jLabel3.setText("Habitación Doble: " + Doble );
+        this.jLabel2.setText("Habitación Sencilla: " + Sencilla);
+        this.jLabel3.setText("Habitación Doble: " + Doble);
         this.jLabel4.setText("Habitación Triple: " + Triple);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -427,7 +602,7 @@ public class Consultas extends javax.swing.JFrame {
         this.jLabel2.setText("");
         this.jLabel3.setText("");
         this.jLabel4.setText("");
-        this.jLabel1.setText("Introduce nombre del huesped y presiona Enter");  
+        this.jLabel1.setText("Introduce nombre del huesped y presiona Enter");
         this.jTextField1.setVisible(true);
         this.jTextField1.requestFocus();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
@@ -444,7 +619,7 @@ public class Consultas extends javax.swing.JFrame {
         this.jLabel2.setText("");
         this.jLabel3.setText("");
         this.jLabel4.setText("");
-        this.jLabel2.setText("Introduce el Número de Habitación y presiona Enter"); 
+        this.jLabel2.setText("Introduce el Número de Habitación y presiona Enter");
         this.jComboBox1.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
@@ -465,6 +640,55 @@ public class Consultas extends javax.swing.JFrame {
         this.jRadioButtonPiso2.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+        this.jComboBox1.setVisible(false);
+        this.jTable1.setVisible(false);
+        this.jTextField1.setVisible(false);
+        this.jRadioButtonPiso1.setVisible(false);
+        this.jRadioButtonPiso2.setVisible(false);
+        this.eliminar();//Borra los datos que actualmente están el jtable
+        this.jLabel1.setText("");
+        this.jLabel2.setText("");
+        this.jLabel3.setText("");
+        this.jLabel4.setText("Huéspedes por Orden Alfabético");
+        this.jTable1.setVisible(true);
+        String query = "select * from huespedes ORDER BY nombre ASC";
+        this.conn.Consult(query);
+        int n = 0;
+        try {
+            this.conn.rs.last();//Se posiciona en el último registo de la tabla
+            n = this.conn.rs.getRow();//Registra el número actual del registro
+            this.conn.rs.first();//Se posiciona en el primer registro de la tabla
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error...");
+        }
+        if (n != 0) {
+            Object datos[][] = new Object[n][4];
+            int piso;
+            for (int i = 0; i < n; i++) {
+                try {
+                    datos[i][0] = this.conn.rs.getString(1);
+                    datos[i][1] = this.conn.rs.getInt(3);
+                    piso = this.conn.rs.getInt(3);
+                    if (piso < 200) {
+                        datos[i][2] = 1;
+                    } else {
+                        datos[i][2] = 2;
+                    }
+                    this.conn.rs.next();//Avanza al siguiente registro
+                } catch (Exception e) {
+                    System.out.println("Error#2...");
+                }
+            }
+            String columnas[] = {"Nombre", "Habitacion", "Piso"};
+            this.jTable1.setModel(new DefaultTableModel(datos, columnas));
+            System.out.println("Tabla lista");
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay datos...");
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
         this.jComboBox1.setVisible(false);
@@ -477,161 +701,220 @@ public class Consultas extends javax.swing.JFrame {
         this.jLabel2.setText("");
         this.jLabel3.setText("");
         this.jLabel4.setText("");
-        this.jTable1.setVisible(true);
-        String query="select * from huespedes ORDER BY nombre ASC";
+        String query = "select * from servicios";
         this.conn.Consult(query);
-        int n=0;
-        try{
-            this.conn.rs.last();//Se posiciona en el último registo de la tabla
-            n=this.conn.rs.getRow();//Registra el número actual del registro
-            this.conn.rs.first();//Se posiciona en el primer registro de la tabla
-        }catch(Exception e){
+        int ingresos, personaextra, gimnasio, spa, bar, tintoreria, ninera, serviciocuarto, eventoespecial;
+        DefaultPieDataset pieDataset = new DefaultPieDataset();
+        try {
+            gimnasio = this.conn.rs.getInt(3);
+            spa = this.conn.rs.getInt(4);
+            bar = this.conn.rs.getInt(5);
+            tintoreria = this.conn.rs.getInt(6);
+            ninera = this.conn.rs.getInt(7);
+            serviciocuarto = this.conn.rs.getInt(8);
+            eventoespecial = this.conn.rs.getInt(9);
+            pieDataset.setValue("Gimnasio", gimnasio);
+            pieDataset.setValue("Spa", spa);
+            pieDataset.setValue("Bar", bar);
+            pieDataset.setValue("Tintorería", tintoreria);
+            pieDataset.setValue("Niñera", ninera);
+            pieDataset.setValue("Servicio al Cuarto", serviciocuarto);
+            pieDataset.setValue("Evento Especial", eventoespecial);
+
+            JFreeChart chart = ChartFactory.createPieChart("Servicios del Hotel", pieDataset, true, true, true);
+            ChartFrame frame = new ChartFrame("Grafica Servisios del Hotel", chart);
+
+            frame.pack();
+            frame.setVisible(true);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error...");
         }
-        if(n!=0){
-            Object datos[][]=new Object[n][4];
-            int piso;
-            for(int i=0; i<n; i++){
-                try{
-                    datos[i][0]=this.conn.rs.getString(1);
-                    datos[i][1]=this.conn.rs.getInt(3);
-                    piso=this.conn.rs.getInt(3);
-                    if(piso<200)
-                        datos[i][2]=1;
-                    else
-                        datos[i][2]=2;
-                    this.conn.rs.next();//Avanza al siguiente registro
-                }catch(Exception e){
-                    System.out.println("Error#2...");
-                }
-            }
-            String columnas[]={"Nombre","Habitacion","Piso"};
-            this.jTable1.setModel(new DefaultTableModel(datos,columnas));
-            System.out.println("Tabla lista");
-        }else
-            JOptionPane.showMessageDialog(this, "No hay datos...");
     }//GEN-LAST:event_jMenuItem11ActionPerformed
-
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         // TODO add your handling code here:       
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        // TODO add your handling code here:
         dispose();
+        JFrame Ventana = new JFrame();
+
+        JPanel miPanel = new JPanel();
+        JLabel etiq1, etiq2, etiq3;
+        this.jMenuBar1.setVisible(false);
+        etiq1 = new JLabel("Gracias");
+        etiq2 = new JLabel("por su");
+        etiq3 = new JLabel("Consulta");
+        etiq1.setFont(new Font("Serif", Font.PLAIN, 28));
+
+        miPanel.add(etiq1);
+        miPanel.add(etiq2);
+        miPanel.add(etiq3);
+        setContentPane(miPanel);
+         setSize(400, 400);//es un metodo heredado de JFrame
+         setVisible(true);
+        Ventana.getContentPane().add(miPanel);
+        Ventana.pack();
+        Ventana.setSize(400, 400);
+        //Ventana.setVisible(true);
+        try {
+            sleep(5000);
+        } catch (InterruptedException ex) {
+            JOptionPane.showMessageDialog(this, "Error...");
+        }
+
+        Ventana.dispose();
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         // TODO add your handling code here:
         String buscar = this.jTextField1.getText().trim();
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String query="select * from huespedes where nombre = "+"'"+this.jTextField1.getText().trim()+"'";
+            String query = "select * from huespedes where nombre = " + "'" + this.jTextField1.getText().trim() + "'";
             this.conn.Consult(query);
- 
-        String nombre;
-            int numhab,piso;
-                try{
-                    nombre=this.conn.rs.getString(1);
-                    numhab=this.conn.rs.getInt(3);
-                    if(numhab<200)
-                        piso=1;
-                    else
-                        piso=2;
-                    this.jLabel1.setText("Datos de huésped");
-                    this.jLabel2.setText("Nombre del Huésped: " + nombre );
-                    this.jLabel3.setText("Habitación: " + numhab );
-                    this.jLabel4.setText("Piso: " + piso);
-                }catch(Exception e){
-                    this.jLabel2.setText("Huésped no registrado");
-                    JOptionPane.showMessageDialog(this, "Huésped \n" + "no registrado");
-                }        
+
+            String nombre;
+            int numhab, piso;
+            try {
+                nombre = this.conn.rs.getString(1);
+                numhab = this.conn.rs.getInt(3);
+                if (numhab < 200) {
+                    piso = 1;
+                } else {
+                    piso = 2;
+                }
+                this.jLabel1.setText("Datos de huésped");
+                this.jLabel2.setText("Nombre del Huésped: " + nombre);
+                this.jLabel3.setText("Habitación: " + numhab);
+                this.jLabel4.setText("Piso: " + piso);
+            } catch (Exception e) {
+                this.jLabel2.setText("Huésped no registrado");
+                JOptionPane.showMessageDialog(this, "Huésped \n" + "no registrado");
+            }
         }
     }//GEN-LAST:event_jTextField1KeyPressed
 
     private void jComboBox1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1KeyPressed
         // TODO add your handling code here:
-        String query="select * from huespedes where numhab = "+"'"+this.jComboBox1.getSelectedItem()+"'";          
+        String query = "select * from huespedes where numhab = " + "'" + this.jComboBox1.getSelectedItem() + "'";
         this.conn.Consult(query);
         String nombre;
-                try{
-                    nombre=this.conn.rs.getString(1);
-                    this.jLabel3.setText("Datos de huésped");
-                    this.jLabel4.setText("Nombre del Huésped: " + nombre );
-                }catch(Exception e){
-                    this.jLabel1.setText("Habitación No Ocupada");
-                    JOptionPane.showMessageDialog(this, "Habitación \n" + "No Ocupada");
-                }
+        try {
+            nombre = this.conn.rs.getString(1);
+            this.jLabel3.setText("Datos de huésped");
+            this.jLabel4.setText("Nombre del Huésped: " + nombre);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Habitación \n" + "No Ocupada");
+        }
     }//GEN-LAST:event_jComboBox1KeyPressed
 
     private void jRadioButtonPiso1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonPiso1MouseClicked
         // TODO add your handling code here:
-        String cadena1="";
-        String cadena2="";
-        String cadena3="";
-        /*for(int i=100; i<104; i++){
-            try{
-                String query="select numhab from huespedes ";          
-                this.conn.Consult(query);
-                System.out.println(query);
-            }catch(Exception e){
-                cadena1+=i;
-            }
-        }*/
-        String query="select * from huespedes ";          
+        String cadena1 = "";
+        String cadena2 = "";
+        String cadena3 = "";
+        String query = "select * from habitaciones";
         this.conn.Consult(query);
-        int n=0;
-        try{
-            this.conn.rs.last();//Se posiciona en el último registro de la tabla
-            n=this.conn.rs.getRow();//Regresa el número actual del registro
-            this.conn.rs.first();
-        }catch(Exception e){
-            System.out.println("Error#1...");
+        int n = 0;
+        try {
+            this.conn.rs.last();//Se posiciona en el último registo de la tabla
+            n = this.conn.rs.getRow();//Registra el número actual del registro
+            this.conn.rs.first();//Se posiciona en el primer registro de la tabla
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error...");
         }
-        if(n!=0){
-            System.out.println("n "+n);
-            Object datos[]=new Object[n];
-            for(int i=0; i<n; i++){
-                try{
-                    datos[i]=this.conn.rs.getInt(3);
-                    this.conn.rs.next();
-                }catch(Exception e){
-                    System.out.println("Error#2..."+e.getMessage());
+        if (n != 0) {
+            String habitacion, tipoHab;
+            int piso, estado;
+            for (int i = 0; i < n; i++) {
+                try {
+                    tipoHab = this.conn.rs.getString(1);
+                    habitacion = this.conn.rs.getString(2);
+                    piso = this.conn.rs.getInt(3);
+                    estado = this.conn.rs.getInt(4);
+                    if (piso == 1) {
+                        if (estado == 0) {
+                            if (tipoHab.equals("sencilla")) {
+                                cadena1 += ", " + habitacion;
+                            } else if (tipoHab.equals("doble")) {
+                                cadena2 += ", " + habitacion;
+                            } else if (tipoHab.equals("triple")) {
+                                cadena3 += ", " + habitacion;
+                            }
+                        }
+                    }
+                    this.conn.rs.next();//Avanza al siguiente registro
+                } catch (Exception e) {
+                    System.out.println("Error#2...");
                 }
             }
-            for(int i=0; i<n; i++){
-            System.out.println(datos[i]);
-        }
-        }else
+        } else {
             JOptionPane.showMessageDialog(this, "No hay datos...");
-        
-        this.jLabel1.setText("");
-        this.jLabel2.setText("kajb"+cadena1);
-        this.jLabel3.setText("1111111");
-        this.jLabel4.setText("22222");
+        }
+        this.jLabel1.setText("Habitaciones Disponibles Piso 1");
+        this.jLabel2.setText("Sencillas: " + cadena1);
+        this.jLabel3.setText("Dobles: " + cadena2);
+        this.jLabel4.setText("Triples: " + cadena3);
     }//GEN-LAST:event_jRadioButtonPiso1MouseClicked
 
     private void jRadioButtonPiso2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonPiso2MouseClicked
         // TODO add your handling code here:
-        this.jLabel1.setText("");
-        this.jLabel2.setText("kajb");
-        this.jLabel3.setText("11");
-        this.jLabel4.setText("54655422222");
+        String cadena1 = "";
+        String cadena2 = "";
+        String cadena3 = "";
+        String query = "select * from habitaciones";
+        this.conn.Consult(query);
+        int n = 0;
+        try {
+            this.conn.rs.last();//Se posiciona en el último registo de la tabla
+            n = this.conn.rs.getRow();//Registra el número actual del registro
+            this.conn.rs.first();//Se posiciona en el primer registro de la tabla
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error...");
+        }
+        if (n != 0) {
+            String habitacion, tipoHab;
+            int piso, estado;
+            for (int i = 0; i < n; i++) {
+                try {
+                    tipoHab = this.conn.rs.getString(1);
+                    habitacion = this.conn.rs.getString(2);
+                    piso = this.conn.rs.getInt(3);
+                    estado = this.conn.rs.getInt(4);
+                    if (piso == 2) {
+                        if (estado == 0) {
+                            if (tipoHab.equals("sencilla")) {
+                                cadena1 += ", " + habitacion;
+                            } else if (tipoHab.equals("doble")) {
+                                cadena2 += ", " + habitacion;
+                            } else if (tipoHab.equals("triple")) {
+                                cadena3 += ", " + habitacion;
+                            }
+                        }
+                    }
+                    this.conn.rs.next();//Avanza al siguiente registro
+                } catch (Exception e) {
+                    System.out.println("Error#2...");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay datos...");
+        }
+        this.jLabel1.setText("Habitaciones Disponibles Piso 2");
+        this.jLabel2.setText("Sencillas: " + cadena1);
+        this.jLabel3.setText("Dobles: " + cadena2);
+        this.jLabel4.setText("Triples: " + cadena3);
     }//GEN-LAST:event_jRadioButtonPiso2MouseClicked
 
     private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1MouseClicked
 
-
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        final MySqlConn conn=new MySqlConn();
+        final MySqlConn conn = new MySqlConn();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -689,6 +972,7 @@ public class Consultas extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButtonPiso1;
     private javax.swing.JRadioButton jRadioButtonPiso2;
     private javax.swing.JScrollPane jScrollPane2;
