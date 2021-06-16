@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -28,7 +29,7 @@ public class Consultas extends javax.swing.JFrame {
 
     static final String Sencilla = "890";
     static final String Doble = "1200";
-    static final String Triple = "1500";
+    static final String Triple = "1900";
 
     MySqlConn conn = new MySqlConn();
     JFreeChart graficaBarras;
@@ -419,28 +420,16 @@ public class Consultas extends javax.swing.JFrame {
         this.jLabel4.setText("");
         this.jLabel1.setText("");
         this.jLabel2.setText("");
-        String cadena = "";
-        FileInputStream src = null;
-        try { // primer argumento
-            src = new FileInputStream("Ingresos.txt");
-        } catch (FileNotFoundException e) {
-            System.out.println("fallo apertura " + e);
-            System.exit(1);
-        }
+        String query = "select * from servicios";
+        this.conn.Consult(query);
         try {
-            int d;
-            d = src.read(); //Lee por caracter o por byte
-            while (d != -1) { //mientras no sea fin de archivo
-                cadena += ((char) d);
-                d = src.read(); //Lee por caracter o por byte
-            }
-            this.jLabel1.setText("Ingresos del hotel");
-            this.jLabel2.setText("$ " + cadena);
-            src.close();
-        } catch (IOException e) {
-            System.out.println("Error de apertura/cierre");
-            System.exit(1);
+            JOptionPane.showMessageDialog(this,"El total de ingresos al hotel es \n$"+this.conn.rs.getInt(1)+"\nesto hasta el dia de hoy");
+            this.jLabel2.setText("Ingresos del Hotel");
+            this.jLabel3.setText("$ "+this.conn.rs.getInt(1));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -585,9 +574,9 @@ public class Consultas extends javax.swing.JFrame {
         this.jLabel3.setText("");
         this.jLabel4.setText("");
         this.jLabel1.setText("Costos de Habitaciones");
-        this.jLabel2.setText("Habitación Sencilla: " + Sencilla);
-        this.jLabel3.setText("Habitación Doble: " + Doble);
-        this.jLabel4.setText("Habitación Triple: " + Triple);
+        this.jLabel2.setText("Habitación Sencilla: $" + Sencilla);
+        this.jLabel3.setText("Habitación Doble: $" + Doble);
+        this.jLabel4.setText("Habitación Triple: $" + Triple);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -737,33 +726,6 @@ public class Consultas extends javax.swing.JFrame {
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         dispose();
-        JFrame Ventana = new JFrame();
-
-        JPanel miPanel = new JPanel();
-        JLabel etiq1, etiq2, etiq3;
-        this.jMenuBar1.setVisible(false);
-        etiq1 = new JLabel("Gracias");
-        etiq2 = new JLabel("por su");
-        etiq3 = new JLabel("Consulta");
-        etiq1.setFont(new Font("Serif", Font.PLAIN, 28));
-
-        miPanel.add(etiq1);
-        miPanel.add(etiq2);
-        miPanel.add(etiq3);
-        setContentPane(miPanel);
-         setSize(400, 400);//es un metodo heredado de JFrame
-         setVisible(true);
-        Ventana.getContentPane().add(miPanel);
-        Ventana.pack();
-        Ventana.setSize(400, 400);
-        //Ventana.setVisible(true);
-        try {
-            sleep(5000);
-        } catch (InterruptedException ex) {
-            JOptionPane.showMessageDialog(this, "Error...");
-        }
-
-        Ventana.dispose();
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
