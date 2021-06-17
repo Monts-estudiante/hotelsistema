@@ -128,7 +128,8 @@ public class Usuario extends javax.swing.JFrame {
         String cuenta, contraseña, query, parte1, parte2;
         cuenta = this.usuario.getText().trim();
         char[] passwd = this.jPasswordFieldContrasena.getPassword();
-        
+        principal llamar=new principal();
+                llamar.setVisible(true);
         query = "select * from usuarios where cuenta = " + "'" + cuenta + "'";
         this.conn.Consult(query);
         try {
@@ -140,8 +141,7 @@ public class Usuario extends javax.swing.JFrame {
                 System.out.println("Bienvenid@ " + this.conn.rs.getString(1) + " al sistema");
                 JOptionPane.showMessageDialog(this, "Bienvenid@ " + this.conn.rs.getString(1) + " al sistema");
                 //Usuario llamar= new Usuario();
-                principal llamar=new principal();
-                llamar.setVisible(true);
+                
                 // Y nos ocultamos nosotros
                 this.setVisible(false);  
             }else{

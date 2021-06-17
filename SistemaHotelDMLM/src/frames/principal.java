@@ -10,7 +10,8 @@ package frames;
  * @author Tania Montserrat
  */
 public class principal extends javax.swing.JFrame {
-
+    MySqlConn conn;
+    MySqlConn objConn = new MySqlConn();
     /**
      * Creates new form principal
      */
@@ -30,6 +31,10 @@ public class principal extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButtonRegistro = new javax.swing.JButton();
+        jButtonConsulta = new javax.swing.JButton();
+        jButtonSalidas = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,6 +48,34 @@ public class principal extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(226, 146, 65));
         jLabel3.setText("El Destino De Los Dioses. ");
 
+        jButtonRegistro.setText("Rsgistro de Huesped");
+        jButtonRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistroActionPerformed(evt);
+            }
+        });
+
+        jButtonConsulta.setText("Consultas");
+        jButtonConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultaActionPerformed(evt);
+            }
+        });
+
+        jButtonSalidas.setText("Check Out");
+        jButtonSalidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalidasActionPerformed(evt);
+            }
+        });
+
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -54,7 +87,14 @@ public class principal extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(213, 213, 213)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSalidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(1005, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -64,7 +104,15 @@ public class principal extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addContainerGap(845, Short.MAX_VALUE))
+                .addGap(109, 109, 109)
+                .addComponent(jButtonRegistro)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonConsulta)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSalidas)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSalir)
+                .addContainerGap(590, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -86,6 +134,36 @@ public class principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
+        // TODO add your handling code here:
+        Registro llamar= new Registro(objConn);
+        llamar.setVisible(true);
+        // Y nos ocultamos nosotros
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonRegistroActionPerformed
+
+    private void jButtonConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultaActionPerformed
+        // TODO add your handling code here:
+        Consultas llamar= new Consultas(objConn);
+        llamar.setVisible(true);
+        // Y nos ocultamos nosotros
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonConsultaActionPerformed
+
+    private void jButtonSalidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalidasActionPerformed
+        // TODO add your handling code here:
+        Salidas llamar= new Salidas(objConn);
+        llamar.setVisible(true);
+        // Y nos ocultamos nosotros
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonSalidasActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButtonSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,6 +203,10 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonConsulta;
+    private javax.swing.JButton jButtonRegistro;
+    private javax.swing.JButton jButtonSalidas;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel5;
