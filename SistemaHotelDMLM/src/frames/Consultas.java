@@ -1,6 +1,7 @@
 package frames;
 
-//import sql.MySqlConn;
+
+import MySql.MySqlConn;
 
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -30,14 +31,15 @@ public class Consultas extends javax.swing.JFrame {
 
     static final String Sencilla = "890";
     static final String Doble = "1200";
-    static final String Triple = "1500";
-    
-    MySqlConn conn;
-    MySqlConn objConn = new MySqlConn();
+
+    static final String Triple = "1900";
+
+    MySqlConn conn = new MySqlConn();
     JFreeChart graficaBarras;
     int S, D, T, Ocupado;
 
-    public Consultas(MySqlConn conn) {
+    public Consultas() {
+
         this.conn = conn;
         initComponents();
         this.jComboBox1.setVisible(false);
@@ -52,7 +54,9 @@ public class Consultas extends javax.swing.JFrame {
         this.jLabel4.setText("");
     }
 
-    public Consultas() {
+
+    public Consultas(MySqlConn conn) {
+
         this.conn = conn;
         initComponents();
         this.setLocationRelativeTo(this);
@@ -92,7 +96,9 @@ public class Consultas extends javax.swing.JFrame {
         jRadioButtonPiso1 = new javax.swing.JRadioButton();
         jRadioButtonPiso2 = new javax.swing.JRadioButton();
         jLabelConsultas = new javax.swing.JLabel();
+
         Regresa = new javax.swing.JButton();
+
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -201,6 +207,7 @@ public class Consultas extends javax.swing.JFrame {
         jLabelConsultas.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabelConsultas.setText("Consultas");
 
+
         Regresa.setText("Regresar a Principal");
         Regresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,6 +226,7 @@ public class Consultas extends javax.swing.JFrame {
                         .addComponent(jLabelConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(345, 345, 345))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Regresa)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -242,6 +250,28 @@ public class Consultas extends javax.swing.JFrame {
                                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGap(0, 0, Short.MAX_VALUE))))
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)))
+
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(46, 46, 46)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jRadioButtonPiso1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jRadioButtonPiso2))
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38))))
         );
 
@@ -271,9 +301,11 @@ public class Consultas extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Regresa)
                 .addGap(28, 28, 28))
+
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4});
@@ -400,7 +432,9 @@ public class Consultas extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 599, Short.MAX_VALUE)
+
         );
 
         pack();
@@ -414,8 +448,10 @@ public class Consultas extends javax.swing.JFrame {
         this.jRadioButtonPiso1.setVisible(false);
         this.jRadioButtonPiso2.setVisible(false);
         this.eliminar();//Borra los datos que actualmente están el jtable
+
         ConsultaImagenes llamar = new ConsultaImagenes(objConn);
         llamar.setVisible(true);
+
         this.jLabel1.setText("");
         this.jLabel2.setText("");
         this.jLabel3.setText("");
@@ -440,11 +476,13 @@ public class Consultas extends javax.swing.JFrame {
         this.conn.Consult(query);
         try {
             //JOptionPane.showMessageDialog(this,"El total de ingresos al hotel es \n$"+this.conn.rs.getInt(1)+"\nesto hasta el dia de hoy");
+
             this.jLabel2.setText("Ingresos del Hotel");
             this.jLabel3.setText("$ "+this.conn.rs.getInt(1));
         } catch (SQLException ex) {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -589,9 +627,11 @@ public class Consultas extends javax.swing.JFrame {
         this.jLabel3.setText("");
         this.jLabel4.setText("");
         this.jLabel1.setText("Costos de Habitaciones");
+
         this.jLabel2.setText("Habitación Sencilla: " + Sencilla);
         this.jLabel3.setText("Habitación Doble: " + Doble);
         this.jLabel4.setText("Habitación Triple: " + Triple);
+
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -887,6 +927,7 @@ public class Consultas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1MouseClicked
 
+
     private void RegresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresaActionPerformed
         // TODO add your handling code here:
         principal llamar = new principal();
@@ -894,11 +935,14 @@ public class Consultas extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_RegresaActionPerformed
 
+=
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+
         final MySqlConn objConn = new MySqlConn();
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -925,13 +969,17 @@ public class Consultas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new Consultas(objConn).setVisible(true);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JButton Regresa;
+
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
