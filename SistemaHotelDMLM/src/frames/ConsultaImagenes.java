@@ -92,7 +92,7 @@ public class ConsultaImagenes extends javax.swing.JFrame {
             }
         });
 
-        jButtonRegresar.setText("Regresar a la Pagina Principal");
+        jButtonRegresar.setText("Regresar a consultas");
         jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegresarActionPerformed(evt);
@@ -172,42 +172,42 @@ public class ConsultaImagenes extends javax.swing.JFrame {
 
     private void jButtonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarActionPerformed
         // TODO add your handling code here:
-//        String query = "select imagen FROM imagenes";
-//        this.conn.Consult(query);
-//        int n=0;
-//        
-//        try {
-//            this.conn.rs.last();
-//            n = this.conn.rs.getRow();
-//            this.conn.rs.first();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ConsultaImagenes.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//            
-//        try {
-//            Image img ;
-//            ImageIcon icono;
-//            DefaultListModel lista = new DefaultListModel();
-//            while(this.conn.rs.next() ){
-//                Blob imagen = this.conn.rs.getBlob(1);
-//                byte []i = imagen.getBytes(1, (int) imagen.length());
-//                BufferedImage image = ImageIO.read(new ByteArrayInputStream(i));
-//                
-//                img = image.getScaledInstance(210, 160, Image.SCALE_SMOOTH);
-//                icono = new ImageIcon(img);
-//                lista.addElement(icono);
-//            }
-//            this.jListFotos.setModel(lista);
-//            
-//            
-//        } catch (SQLException | IOException ex) {
-//            Logger.getLogger(ConsultaImagenes.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        String query = "select imagen FROM imagenes";
+        this.conn.Consult(query);
+        int n=0;
+        
+        try {
+            this.conn.rs.last();
+            n = this.conn.rs.getRow();
+            this.conn.rs.first();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultaImagenes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        try {
+            Image img ;
+            ImageIcon icono;
+            DefaultListModel lista = new DefaultListModel();
+            while(this.conn.rs.next() ){
+                Blob imagen = this.conn.rs.getBlob(1);
+                byte []i = imagen.getBytes(1, (int) imagen.length());
+                BufferedImage image = ImageIO.read(new ByteArrayInputStream(i));
+                
+                img = image.getScaledInstance(210, 160, Image.SCALE_SMOOTH);
+                icono = new ImageIcon(img);
+                lista.addElement(icono);
+            }
+            this.jListFotos.setModel(lista);
+            
+            
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(ConsultaImagenes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonMostrarActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
         // TODO add your handling code here:
-        principal llamar= new principal();
+        Consultas llamar= new Consultas(objConn);
         llamar.setVisible(true);
         // Y nos ocultamos nosotros
         this.setVisible(false);

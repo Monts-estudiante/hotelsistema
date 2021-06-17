@@ -15,7 +15,8 @@ import javax.swing.JOptionPane;
  * @author Tania Montserrat
  */
 public class principal extends javax.swing.JFrame {
-
+    MySqlConn conn;
+    MySqlConn objConn = new MySqlConn();
     /**
      * Creates new form principal
      */
@@ -38,16 +39,12 @@ public class principal extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+
+        jButtonRegistro = new javax.swing.JButton();
+        jButtonConsulta = new javax.swing.JButton();
+        jButtonSalidas = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,19 +59,35 @@ public class principal extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(226, 146, 65));
         jLabel3.setText("El Destino De Los Dioses. ");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hotel_logo.png"))); // NOI18N
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/estrellas.png"))); // NOI18N
+        jButtonRegistro.setText("Rsgistro de Huesped");
+        jButtonRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistroActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 48)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(209, 111, 13));
-        jLabel5.setText("Bienvenido a Eliseos Hotel");
+        jButtonConsulta.setText("Consultas");
+        jButtonConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultaActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(195, 106, 16));
-        jLabel6.setText("Reforma #501,Zona centro, Oaxaca");
+        jButtonSalidas.setText("Check Out");
+        jButtonSalidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalidasActionPerformed(evt);
+            }
+        });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hotel_fachada.jpg"))); // NOI18N
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
+
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -101,9 +114,18 @@ public class principal extends javax.swing.JFrame {
                         .addGap(404, 404, 404)
                         .addComponent(jLabel6))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(272, 272, 272)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(251, Short.MAX_VALUE))
+
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(213, 213, 213)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSalidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(1005, Short.MAX_VALUE))
+
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,13 +139,17 @@ public class principal extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jLabel6)
+
+                .addGap(109, 109, 109)
+                .addComponent(jButtonRegistro)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97))
+                .addComponent(jButtonConsulta)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSalidas)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSalir)
+                .addContainerGap(590, Short.MAX_VALUE))
+
         );
 
         jMenuBar1.setBackground(new java.awt.Color(233, 183, 95));
@@ -176,28 +202,37 @@ public class principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        JOptionPane.showMessageDialog(this,"Saliendo...Thank you for your visit"); 
-        this.setVisible(false);
-    }//GEN-LAST:event_jMenu5MouseClicked
 
-    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-        ///en este no escribir 
-    }//GEN-LAST:event_jMenu4ActionPerformed
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-       Consultas llamar= new Consultas();
+    private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
+        // TODO add your handling code here:
+        Registro llamar= new Registro(objConn);
         llamar.setVisible(true);
         // Y nos ocultamos nosotros
         this.setVisible(false);
-    }//GEN-LAST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_jButtonRegistroActionPerformed
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-      Salidas llamar= new Salidas();
+    private void jButtonConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultaActionPerformed
+        // TODO add your handling code here:
+        Consultas llamar= new Consultas(objConn);
         llamar.setVisible(true);
         // Y nos ocultamos nosotros
         this.setVisible(false);
-    }//GEN-LAST:event_jMenu2ActionPerformed
+    }//GEN-LAST:event_jButtonConsultaActionPerformed
+
+    private void jButtonSalidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalidasActionPerformed
+        // TODO add your handling code here:
+        Salidas llamar= new Salidas(objConn);
+        llamar.setVisible(true);
+        // Y nos ocultamos nosotros
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonSalidasActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -237,7 +272,14 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
+    private javax.swing.JButton jButtonConsulta;
+    private javax.swing.JButton jButtonRegistro;
+    private javax.swing.JButton jButtonSalidas;
+    private javax.swing.JButton jButtonSalir;
+
     private javax.swing.JLabel jLabel1;
+
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

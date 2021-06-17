@@ -90,6 +90,7 @@ public class Salidas extends javax.swing.JFrame {
         jTablehuesped = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableServicios = new javax.swing.JTable();
+        jButtonRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -168,6 +169,13 @@ public class Salidas extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTableServicios);
 
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -182,8 +190,10 @@ public class Salidas extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jButtonTiket))
                 .addGap(18, 18, 18)
-                .addComponent(jTextFieldNumHab, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldNumHab, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRegresar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jRadioButtonSpa)
                     .addComponent(jRadioButtonBar)
@@ -203,10 +213,10 @@ public class Salidas extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
-                                .addComponent(jLabel2)))
+                                .addComponent(jLabel2))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -235,7 +245,9 @@ public class Salidas extends javax.swing.JFrame {
                             .addComponent(jRadioButtonServCuarto)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(jButtonTiket)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonTiket)
+                            .addComponent(jButtonRegresar))))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButtonBar)
@@ -472,6 +484,13 @@ public class Salidas extends javax.swing.JFrame {
         
     //fin class   
     }//GEN-LAST:event_jButtonTiketActionPerformed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        // TODO add your handling code here:
+        principal llamar = new principal();
+        llamar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
     
     public static void creaPdf(String a,String b, String c, String d, String e, String f,String g,String h,String i,String j,String k,String l) throws DocumentException, FileNotFoundException, BadElementException{
         Document pdf = new Document();
@@ -585,6 +604,7 @@ public class Salidas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonRegresar;
     private javax.swing.JButton jButtonTiket;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

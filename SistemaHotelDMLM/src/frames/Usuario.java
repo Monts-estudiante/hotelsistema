@@ -273,30 +273,37 @@ public class Usuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
 
-        //Usuario llamar= new Usuario();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String cuenta, contraseña, query, parte1, parte2;
+        cuenta = this.usuario.getText().trim();
+        char[] passwd = this.jPasswordFieldContrasena.getPassword();
         principal llamar=new principal();
-        llamar.setVisible(true);
-        // Y nos ocultamos nosotros
-        this.setVisible(false);
-        
-        String cuenta,contraseña,query;
-       
-        cuenta=this.usuario.getText().trim();
-        query="select * from cuentas where cuenta= "+"'"+cuenta+"'";
+                llamar.setVisible(true);
+        query = "select * from usuarios where cuenta = " + "'" + cuenta + "'";
         this.conn.Consult(query);
-        try{
-            String contraseñaMySql=this.conn.rs.getString(2);
-            char[] passw=this.jPasswordFieldContra.getPassword();
-            contraseña=new String(passw);
-            String contraseñaencriptada=DigestUtils.md5Hex(contraseña);
-            if(contraseñaMySql.equals(contraseñaencriptada))
-                JOptionPane.showMessageDialog(this,"Bienvenido "+this.conn.rs.getString(1)+" al sistema");
-            else
-                JOptionPane.showMessageDialog(this,"Error en la contraseña");
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(this,"No existe la cuenta");
+        try {
+            String contraseñaMysql = this.conn.rs.getString(2);
+//            char[] passwd = this.jPasswordFieldLogin.getPassword();
+            contraseña = new String(passwd);
+            String contraseñaencriptada = DigestUtils.md5Hex(contraseña);
+            if (contraseñaMysql.equals(contraseñaencriptada)) {
+                System.out.println("Bienvenid@ " + this.conn.rs.getString(1) + " al sistema");
+                JOptionPane.showMessageDialog(this, "Bienvenid@ " + this.conn.rs.getString(1) + " al sistema");
+                //Usuario llamar= new Usuario();
+                
+                // Y nos ocultamos nosotros
+                this.setVisible(false);  
+            }else{
+                this.jPasswordFieldContrasena.setText("");
+                System.out.println("Error en la contraseña");
+                JOptionPane.showMessageDialog(this, "Error en la contraseña");
+                
+            }
+        } catch (SQLException ex) {
+            this.usuario.setText("");
+            this.jPasswordFieldContrasena.setText("");
+
             System.out.println("No existe la cuenta");
         }
                   
